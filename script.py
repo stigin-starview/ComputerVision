@@ -1,3 +1,3 @@
 import cv2
-img = cv2.imread("resources/drums.jpg",0)
+img = cv2.imread("resources/drum.jpg",0)
 
