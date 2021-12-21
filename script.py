@@ -26,4 +26,3 @@ def ImgResize(images):
 images = glob.glob("resources/*.jpg")
 
 ImgResize(images)
-
