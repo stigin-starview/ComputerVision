@@ -3,7 +3,7 @@ import cv2
 # Reading the xml file which contain face detection functions.
 face_cascade = cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
 
-# Enter the file location.
+# Enter the image file location.
 img = cv2.imread("resources/photo.jpg")
 
 #converting the file to grey scale for better accuracy
@@ -12,7 +12,7 @@ gray_img = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
 # Using the functions in the xml file.
 
 faces = face_cascade.detectMultiScale(gray_img,
-scaleFactor = 1.05,
+scaleFactor = 1.2800,
 minNeighbors = 5)
 
 for x, y, w, h in faces:
@@ -27,7 +27,7 @@ for x, y, w, h in faces:
 print(type(faces))
 print(faces)
 
-resized = cv2.resize(img, (int(img.shape[1]/3), int(img.shape[0]/3)))
+resized = cv2.resize(img, (int(img.shape[1]/2), int(img.shape[0]/2)))
 
 cv2.imshow("Faces", resized)
 cv2.waitKey(0)
