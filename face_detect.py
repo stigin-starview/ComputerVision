@@ -32,4 +32,3 @@ resized = cv2.resize(img, (int(img.shape[1]/2), int(img.shape[0]/2)))
 cv2.imshow("Faces", resized)
 cv2.waitKey(0)
 cv2.destryAllWindows()
-
