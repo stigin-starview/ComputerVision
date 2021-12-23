@@ -12,7 +12,7 @@ cv2.imwrite("drums_resized.jpg", resized_image)
 cv2.waitKey(0)
 cv2.destroyAllWindows()
 
-
+# Fuction for resize image
 def ImgResize(images):
     for image in images:
         img = cv2.imread(image,1)
