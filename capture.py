@@ -1,4 +1,7 @@
 import cv2, time
+
+# 2 second wait for me to move away from the camera.
+time.sleep(2)
 # study the cv2 documentation and impliment more fuction to the script------!!!!!
 
 # Press Q to close the window / break the script
@@ -25,14 +28,14 @@ while True:
     #smoothening the thereshold images.
     thresh_frame = cv2.dilate(thresh_frame, None, iterations = 2)
     
-    (cnts,_) = cv2.findCountours(thresh_frame.copy(), cv2.RETER_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+    (cnts,_) = cv2.findContours(thresh_frame.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
     
     for contour in cnts:
         if cv2.contourArea(contour) < 1000:
             continue
             
-        (x, y, w, h) = cv2.boundRect(contour)
-        cv.rectangle(frame, (x,y), (x+w, y+h), (0,255,0), 3)
+        (x, y, w, h) = cv2.boundingRect(contour)
+        cv2.rectangle(frame, (x,y), (x+w, y+h), (0,255,0), 3)
 
     cv2.imshow("Color Frame", frame)
     cv2.imshow("Gray Frame", gray)
