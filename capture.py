@@ -24,7 +24,15 @@ while True:
     thresh_frame = cv2.threshold(delta_frame, 30, 255, cv2.THRESH_BINARY)[1]
     #smoothening the thereshold images.
     thresh_frame = cv2.dilate(thresh_frame, None, iterations = 2)
-
+    
+    (cnts,_) = cv2.findCountours(thresh_frame.copy(), cv2.RETER_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+    
+    for contour in cnts:
+        if cv2.contourArea(contour) < 1000:
+            continue
+            
+        (x, y, w, h) = cv2.boundRect(contour)
+        cv.rectangle(frame, (x,y), (x+w, y+h), (0,255,0), 3)
 
     cv2.imshow("captures", frame)
     cv2.imshow("Gray Frame", gray)
