@@ -1,0 +1,4 @@
+add a coloum with a check box to select what marker you wanna see.
+
+	1. all the volcanos of the world.
+	2. 
