@@ -1,5 +1,5 @@
-import cv2, time
-
+import cv2, time, pandas
+from datetime import datetime
 # 2 second wait for me to move away from the camera.
 time.sleep(2)
 # study the cv2 documentation and impliment more fuction to the script------!!!!!
@@ -11,6 +11,9 @@ time.sleep(2)
 video = cv2.VideoCapture(0, cv2.CAP_DSHOW)
 
 first_frame = None
+status_list = [None, None]
+movement_time = []
+time_df = pandas.DataFrame(columns = ['Start', 'End'])
 
 while True:
 
@@ -38,18 +41,34 @@ while True:
             
         (x, y, w, h) = cv2.boundingRect(contour)
         cv2.rectangle(frame, (x,y), (x+w, y+h), (0,255,0), 3)
+    
+    status_list.append(status)
+    
+    if status_list[-1] == 1 and status_list[-2] == 0:
+        movement_time.append(datetime.now())
+    if status_list[-1] == 0 and status_list[-2] == 1:
+        movement_time.append(datetime.now())  
 
     cv2.imshow("Color Frame", frame)
     cv2.imshow("Gray Frame", gray)
     cv2.imshow("Delta Frame", delta_frame)
     cv2.imshow("Threshold Frame", thresh_frame)
     
-
+    
+          
     key = cv2.waitKey(1)
     
     if key == ord('q'):
+        if status == 1:
+            movement_time.append(datetime.now())
         break
+print(movement_time)
 
+for i in range(0, len(movement_time), 2):
+    time_df = time_df.append({"Start":movement_time[i], "End":movement_time[i+1]}, ignore_index = True )
+
+time_df.to_csv("movement_time.csv")
+    
 video.release()
 
 cv2.destroyAllWindows()
