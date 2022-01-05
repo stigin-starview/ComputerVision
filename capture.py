@@ -13,7 +13,7 @@ video = cv2.VideoCapture(0, cv2.CAP_DSHOW)
 first_frame = None
 status_list = [None, None]
 movement_time = []
-time_df = pandas.DataFrame(columns = ['Start', 'End'])
+time_df = pandas.DataFrame(columns = ["Start", "End"])
 
 while True:
 
@@ -66,6 +66,7 @@ print(movement_time)
 
 for i in range(0, len(movement_time), 2):
     time_df = time_df.append({"Start":movement_time[i], "End":movement_time[i+1]}, ignore_index = True )
+
 
 time_df.to_csv("movement_time.csv")
     
