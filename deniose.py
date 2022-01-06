@@ -4,6 +4,8 @@ from matplotlib import pyplot
 
 # Press Q to close the window / break the script
 
+# more work and integration is needed in here.
+
 ''' (cv2.CAP_DSHOW) is added because there is a bug in MSMF 
     backend of opencv while accessing the camera '''
 video = cv2.VideoCapture(0, cv2.CAP_DSHOW)
@@ -26,6 +28,7 @@ while True:
     pyplot.subplot(132),pyplot.imshow(noisy[2], 'gray')
     pyplot.subplot(133),pyplot.imshow(dst, 'gray')
     pyplot.show()
+    cv2.imshow("Color Frame", frame)
     # gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
     # gray = cv2.GaussianBlur(gray,(21,21),0)
 
