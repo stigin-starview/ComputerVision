@@ -1,3 +1,5 @@
+# 'q' is not qutting the entire window there is a bug!
+
 import cv2, time, numpy
 from datetime import datetime
 from matplotlib import pyplot
