@@ -1,4 +1,6 @@
-import cv2, time, pandas
+import cv2
+import time
+import pandas
 from datetime import datetime
 # 2 second wait for me to move away from the camera.
 time.sleep(2)
